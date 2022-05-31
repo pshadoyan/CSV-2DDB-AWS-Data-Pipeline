@@ -54,6 +54,21 @@ Select action policies were also added such as:
 - dyanmodb:PutItem
 - dynamodb:BatchWriteItem
 
+## Steps
+### Initial Setup:
+
+ 1. Navigate to https://aws.amazon.com/blogs/database/implementing-bulk-csv-ingestion-to-amazon-dynamodb/ and follow all listed steps
+ 2. Clone/Copy lambda function and replace existing code with the code provided, be sure to note and adjust directory for the line, `obj = s3.Object(bucket, "/home/ubuntu/pipeline/CSV-2DDB-AWS-Data-Pipeline/"+str(key)).get()['Body']`, as the environment variable does not explicitly contain the directory, just the file name and extension.
+ 3. Create an AWS user with `AmazonS3FullAccess` permission and be sure to save the access_key and secret_access_key.
+ 4. Clone this repository in a local or VM environment and in `secrets.py`, put your access_key and secret_access_key in the indicated variables. 
+ 5. In `secrets.py`, adjust the CSV's file location and S3 bucket name as needed.
+ 6. If all has been set up correctly, open a local terminal and use `python3 uploader.py` to upload the csv to the s3 bucket, which will automatically load the data into the DynamoDB.
+
+#### Dependencies for Uploader
+- pandas : `pip install pandas`
+- boto3 : `pip install boto3`
+
 #### Resources utilized
 - https://aws.amazon.com/blogs/database/implementing-bulk-csv-ingestion-to-amazon-dynamodb/
 - https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html
+- https://github.com/aws-samples/csv-to-dynamodb
