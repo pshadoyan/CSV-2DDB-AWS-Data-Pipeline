@@ -39,3 +39,6 @@ I opted to pre-process in the EC2 instance because of the minimal transformation
 DynamoDB is a proprietary NoSQL database. Upon upload event-trigger, the AWS lambda function loads the data directly into the DynamoDB table. The partition key is located in the first column of the CSV file as prescribed in the CloudFormation template, and requires the first column to be named `uuid`. 
 
 Once the data is loaded into the DynamoDB, data can be queried and mutated easily. One such option is via AWS's SDK, `boto3`. 
+#### Resources utilized
+- https://aws.amazon.com/blogs/database/implementing-bulk-csv-ingestion-to-amazon-dynamodb/
+- https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html
