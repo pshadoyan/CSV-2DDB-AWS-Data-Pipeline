@@ -17,7 +17,7 @@ def lambda_handler(event, context):
 
    #get() does not store in memory
    try:
-       obj = s3.Object(bucket, "/home/ubuntu/pipeline/"+str(key)).get()['Body']
+       obj = s3.Object(bucket, "/home/ubuntu/pipeline/CSV-2DDB-AWS-Data-Pipeline/"+str(key)).get()['Body']
    except:
        print("S3 Object could not be opened. Check environment variable. ")
    try:
