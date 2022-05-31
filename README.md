@@ -13,7 +13,7 @@ Although the CSV file, DATA.csv, was provided via email, I wanted to think about
  - What are some solutions I could come up with to address the potential updating of the CSV without having to manually upload each time?
  - What are the negative consequences of utilizing EC2?
 
-Through research, I found that it would be ideal to have a python script that runs upon the updating of the CSV. Potentially, based on how often the CSV is updated, a scheduler tool like Cronitor could potentially be used. 
+Through research, I found that it would be ideal to have a python script that runs upon the updating of the CSV. Potentially, based on how often the CSV is updated, a scheduler tool like Cronitor could be used. 
 
 One negative consequence of a EC2 is that the static costs, depending on function, typically outweigh low-volume on-demand function triggers (will speak more on this later). 
 
