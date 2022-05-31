@@ -1,6 +1,6 @@
 # CSV-2DDB-AWS-Data-Pipeline
 
-A simple CSV Data Pipeline using a combination of AWS tools. In this project I used AWS CloudFormation generate a stack of resources including S3, Lambda, and DynamoDB. Additionally, I utilized a EC2 instance for uploading.
+A simple CSV Data Pipeline using a combination of AWS tools. In this project I used AWS CloudFormation to generate a stack of resources including S3, Lambda, and DynamoDB. Additionally, I utilized a EC2 instance for uploading.
 
 I wanted this project to serve as a learning experience, so I decided to attempt to automate each step of the process. 
 
