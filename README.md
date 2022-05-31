@@ -4,6 +4,7 @@ A simple CSV Data Pipeline using a combination of AWS tools. In this project I u
 
 I wanted this project to serve as a learning experience, so I decided to attempt to automate each step of the process. 
 
+> Note: This particular solution is entirely serverless if the DATA.csv file is manually uploaded to the S3 bucket.
 
 ### EC2
 
@@ -39,6 +40,20 @@ I opted to pre-process in the EC2 instance because of the minimal transformation
 DynamoDB is a proprietary NoSQL database. Upon upload event-trigger, the AWS lambda function loads the data directly into the DynamoDB table. The partition key is located in the first column of the CSV file as prescribed in the CloudFormation template, and requires the first column to be named `uuid`. 
 
 Once the data is loaded into the DynamoDB, data can be queried and mutated easily. One such option is via AWS's SDK, `boto3`. 
+
+### Identity & Access Management
+
+In order to upload via EC2 to the S3 bucket, a new user with S3 write permission was required to generate AWS user credentials necessary for Boto3. This was done by allowing a user, `test-user`, the `AmazonS3FullAccess` permission. Further research to restrict the permission should be done. 
+
+Additionally, in order for the lambda function to work properly for the automatic loading of csv data into the DynamoDB, the following roles had to be assigned:
+- S3ReadOnlyAccess : lambda function reading the csv file from S3
+- AWSLambdaBasicExecutionRole : allow logs to be uploaded to CloudWatch for reference
+- AWSLambdaInvocation-DynamoDB : provides reach access to DynamoDB streams
+
+Select action policies were also added such as:
+- dyanmodb:PutItem
+- dynamodb:BatchWriteItem
+
 #### Resources utilized
 - https://aws.amazon.com/blogs/database/implementing-bulk-csv-ingestion-to-amazon-dynamodb/
 - https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html
